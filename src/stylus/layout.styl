@@ -1,0 +1,161 @@
+/*
+  flexbox
+  参考: https://www.webcreatorbox.com/tech/css-flexbox-cheat-sheet
+*/
+
+.layout_h1
+  font-weight bold
+  margin 0
+.flex_test_text
+  width 25%
+
+flex_parent(fDirection, fWrap, fJustifyContent, fAlignItems, fAlignContent, yScroll) // layoutなど
+  // display fDisplay // "flex" か "inline-flex"
+  flex-direction fDirection // 初期値: "row"
+  flex-wrap fWrap // 初期値: "nowrap"
+  justify-content fJustifyContent // 初期値: "flex-start"
+  align-items fAlignItems // 初期値: "stretch"
+  align-content fAlignContent // 初期値: "stretch"
+  overflow-y yScroll // wrapした時にスクロールするかなど
+
+// flex_child(fOrder, fGrow, fShrink, fBasis, fAlignSelf) // flex-box内の子要素それぞれに直接スタイリングする
+flex_child(fGrow, fBasis, fAlignSelf)
+  flex-grow fGrow // 初期値: 0 ※あんまり使わないかも
+  flex-basis fBasis // 初期値: "auto" ※ px, %, vh, vw など
+  align-self fAlignSelf // 初期値: "auto"
+
+// display
+.flexed
+  display flex
+.inline_flexed
+  display inline-flex
+
+// nowrap
+.f_nowrap // ↓よりも後につける
+  flex-wrap nowrap
+  overflow-x scroll
+
+// PARENT
+.f_horizontal_topped_start // 前寄せ上揃い
+  flex_parent(row, wrap, flex-start, flex-start, flex-start, scroll)
+.f_horizontal_centered_start // 前寄せ中央揃い
+  flex_parent(row, wrap, flex-start, center, center, scroll)
+.f_horizontal_bottom_start // 前寄せ下揃い
+  flex_parent(row, wrap, flex-start, flex-end, flex-end, scroll)
+.f_horizontal_ends_start
+  flex_parent(row, wrap, flex-start, stretch, space-between, scroll) // stretchは変えてもいいかも
+.f_horizontal_equ_start
+  flex_parent(row, wrap, flex-start, flex-start, space-around, scroll) // 2つめのflex-startは変えてもいいかも
+
+.f_horizontal_topped_centered // 中央寄せ上揃い
+  flex_parent(row, wrap, center, flex-start, flex-start, scroll)
+.f_horizontal_centered_centered // 全部中央寄せ
+  flex_parent(row, wrap, center, center, center, scroll)
+.f_horizontal_bottom_centered // 中央寄せ下揃い
+  flex_parent(row, wrap, center, flex-end, flex-end, scroll)
+.f_horizontal_ends_centered
+  flex_parent(row, wrap, center, stretch, space-between, scroll) // stretchは変えてもいいかも
+.f_horizontal_equ_centered
+  flex_parent(row, wrap, center, flex-start, space-around, scroll) // 2つめのflex-startは変えてもいいかも
+
+.f_horizontal_topped_end // 後ろ寄せ上揃い
+  flex_parent(row, wrap, flex-end, flex-start, flex-start, scroll)
+.f_horizontal_centered_end // 後ろ寄せ中央揃い
+  flex_parent(row, wrap, flex-end, center, center, scroll)
+.f_horizontal_bottom_end // 後ろ寄せ下揃い
+  flex_parent(row, wrap, flex-end, flex-end, flex-end, scroll)
+.f_horizontal_ends_end
+  flex_parent(row, wrap, flex-end, stretch, space-between, scroll) // stretchは変えてもいいかも
+.f_horizontal_equ_end
+  flex_parent(row, wrap, flex-end, flex-start, space-around, scroll) // 2つめのflex-startは変えてもいいかも
+
+.f_horizontal_topped_between // 横並び両端上揃いに１要素ずつ配置
+  flex_parent(row, wrap, space-between, flex-start, flex-start, scroll)
+.f_horizontal_centered_between // 横並び両端真ん中に１要素ずつ配置
+  flex_parent(row, wrap, space-between, center, center, scroll)
+.f_horizontal_bottom_between // 横並び両端下揃いに１要素ずつ配置
+  flex_parent(row, wrap, space-between, flex-end, flex-end, scroll)
+.f_horizontal_ends_between
+  flex_parent(row, wrap, space-between, stretch, space-between, scroll) // stretchは変えてもいいかも
+.f_horizontal_equ_between
+  flex_parent(row, wrap, space-between, flex-start, space-around, scroll) // 2つめのflex-startは変えてもいいかも
+
+.f_horizontal_topped_around // 横並び等間隔上揃いに１要素ずつ配置
+  flex_parent(row, wrap, space-around, flex-start, flex-start, scroll)
+.f_horizontal_centered_around // 横並び等間隔真ん中に１要素ずつ配置
+  flex_parent(row, wrap, space-around, center, center, scroll)
+.f_horizontal_bottom_around // 横並び等間隔下揃いに１要素ずつ配置
+  flex_parent(row, wrap, space-around, flex-end, flex-end, scroll)
+.f_horizontal_ends_around
+  flex_parent(row, wrap, space-around, stretch, space-between, scroll) // stretchは変えてもいいかも
+.f_horizontal_equ_around
+  flex_parent(row, wrap, space-around, flex-start, space-around, scroll) // 2つめのflex-startは変えてもいいかも
+
+.f_vertical_topped_start // 前寄せ上揃い
+  flex_parent(column, nowrap, flex-start, stretch, flex-start, scroll)
+
+
+.layout1
+  background-color white
+  display grid
+  grid-template "header     header" 60px\
+                "sidemenu content" minmax(calc(100vh - 120px), auto)\
+                "footer     footer" 60px\
+                / 200px 1fr
+  .header
+    background-color orange
+    grid-area header
+  .sidemenu
+    background-color purple
+    grid-area sidemenu
+    overflow-y scroll
+  .content
+    background-color olive
+    grid-area content
+  .footer
+    background-color teal
+    grid-area footer
+
+.layout2
+  background-color white
+  display grid
+  grid-template "header   header" 60px\
+                "sidemenu content" calc(100vh - 60px)\
+                / 200px 1fr
+  .header
+    background-color orange
+    grid-area header
+  .sidemenu
+    background-color purple
+    grid-area sidemenu
+    overflow-y scroll
+  .content
+    background-color olive
+    grid-area content
+    overflow-y scroll
+
+.layout3
+  background-color white
+  display grid
+  grid-template "header header  header" 60px\
+                "side1  content side2" minmax(calc(100vh - 120px), auto)\
+                "footer footer  footer" 60px\
+                / 200px 1fr     200px
+  .header
+    background-color orange
+    grid-area header
+  .side1
+    background-color purple
+    grid-area side1
+    overflow-y scroll
+  .content
+    background-color olive
+    grid-area content
+    overflow-y scroll
+  .side2
+    background-color skyblue
+    grid-area side2
+    overflow-y scroll
+  .footer
+    background-color teal
+    grid-area footer
