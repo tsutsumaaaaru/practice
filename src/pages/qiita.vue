@@ -4,7 +4,7 @@
         p.typeColor-white qiita
     .content
         .editerArea
-            textarea(v-model="article")
+            textarea(placeholder="プログラミングの知識を共有しよう" ,v-model="article")
         .perviewArea
             p {{article}}
 </template>
@@ -14,6 +14,9 @@ export default {
         return {
             article: null,
         }
+    },
+    methods: {
+
     }
 }
 </script>
@@ -32,5 +35,13 @@ export default {
 textarea
     width 100%
     height 100%
-    font-size 12px
+    font-size 2rem
+    &:focus
+        outline: 0
+.perviewArea
+    padding 3px
+    position absolute 
+    overflow auto
+    box-sizing inherit 
+    
 </style>
